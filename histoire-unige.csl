@@ -269,7 +269,7 @@
           <date-part name="year"/>
         </date>
       </if>
-      <else-if type="broadcast report post-weblog post speech article-newspaper article-magazine" match="any">
+      <else-if type="article-newspaper article-magazine broadcast letter personal_communication post-weblog post report speech" match="any">
         <date form="text" variable="issued"/>
       </else-if>
       <else-if match="any" is-uncertain-date="issued">
@@ -557,7 +557,6 @@
   </citation>
   <bibliography subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0" hanging-indent="true">
     <sort>
-      <key variable="call-number"/>
       <key macro="contributors-sort"/>
       <key variable="issued"/>
       <key variable="title"/>
@@ -567,53 +566,88 @@
       -->
     </sort>
     <layout>
-      <group delimiter=", " suffix=".">
-        <text macro="contributors"/>
-        <choose>
-          <if type="chapter article-journal article-magazine article-newspaper broadcast entry-encyclopedia entry-dictionary paper-conference post post-weblog review-book song interview speech motion_picture graphic" match="any">
-            <group delimiter=", ">
-              <text macro="title"/>
-              <text macro="performer"/>
-              <text macro="container-contributors"/>
-              <text macro="container-author-title"/>
-              <text variable="medium" prefix="[" suffix="]"/>
-              <text macro="volume-issue" text-case="capitalize-first"/>
-              <text macro="translator" text-case="capitalize-first"/>
-              <text macro="edition"/>
-              <text macro="volume"/>
-              <text macro="publisher"/>
-              <text macro="collection"/>
-              <text macro="date"/>
-              <text macro="chapter-number"/>
-              <text macro="page-chapter"/>
-              <text macro="description"/>
-            </group>
-          </if>
-          <else-if type="webpage">
-            <group delimiter=", ">
-              <text macro="title" suffix=","/>
-              <text macro="container-contributors"/>
-              <text macro="container-title"/>
-              <text macro="date"/>
-            </group>
-          </else-if>
-          <else>
-            <group delimiter=", ">
-              <text macro="title"/>
-              <text macro="version"/>
-              <text macro="genre"/>
-              <text macro="translator" text-case="capitalize-first"/>
-              <text macro="edition" text-case="capitalize-first"/>
-              <text macro="volume" text-case="capitalize-first"/>
-              <text macro="publisher"/>
-              <text macro="collection"/>
-              <text macro="date"/>
-              <text macro="page-book"/>
-              <text macro="description"/>
-            </group>
-          </else>
-        </choose>
-      </group>
+      <choose>
+        <if type="letter personal_communication" match="any">
+          <group delimiter=", " suffix=".">
+            <text macro="contributors"/>
+            <text macro="title"/>
+            <text macro="version"/>
+            <text macro="genre"/>
+            <text macro="translator"/>
+            <text macro="edition" text-case="capitalize-first"/>
+            <text macro="publisher"/>
+            <text macro="collection"/>
+            <text macro="date"/>
+            <text macro="page-book"/>
+          </group>
+          <group delimiter=", " prefix=" " suffix=".">
+            <text macro="volume"/>
+            <text macro="description"/>
+          </group>
+        </if>
+        <else-if type="
+        article-journal
+        article-magazine
+        article-newspaper
+        broadcast
+        chapter
+        entry-encyclopedia
+        entry-dictionary
+        graphic
+        interview
+        motion_picture
+        paper-conference
+        post
+        post-weblog
+        review-book 
+        song
+        speech
+        " match="any">
+          <group delimiter=", " suffix=".">
+            <text macro="contributors"/>
+            <text macro="title"/>
+            <text macro="performer"/>
+            <text macro="container-contributors"/>
+            <text macro="container-author-title"/>
+            <text variable="medium" prefix="[" suffix="]"/>
+            <text macro="volume-issue" text-case="capitalize-first"/>
+            <text macro="translator" text-case="capitalize-first"/>
+            <text macro="edition"/>
+            <text macro="volume"/>
+            <text macro="publisher"/>
+            <text macro="collection"/>
+            <text macro="date"/>
+            <text macro="chapter-number"/>
+            <text macro="page-chapter"/>
+            <text macro="description"/>
+          </group>
+        </else-if>
+        <else-if type="webpage">
+          <group delimiter=", " suffix=".">
+            <text macro="contributors"/>
+            <text macro="title" suffix=","/>
+            <text macro="container-contributors"/>
+            <text macro="container-title"/>
+            <text macro="date"/>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=", " suffix=".">
+            <text macro="contributors"/>
+            <text macro="title"/>
+            <text macro="version"/>
+            <text macro="genre"/>
+            <text macro="translator" text-case="capitalize-first"/>
+            <text macro="edition" text-case="capitalize-first"/>
+            <text macro="volume" text-case="capitalize-first"/>
+            <text macro="publisher"/>
+            <text macro="collection"/>
+            <text macro="date"/>
+            <text macro="page-book"/>
+            <text macro="description"/>
+          </group>
+        </else>
+      </choose>
       <text prefix=" " macro="online"/>
     </layout>
   </bibliography>
