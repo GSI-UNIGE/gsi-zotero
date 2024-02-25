@@ -68,19 +68,10 @@
       <name>
         <name-part name="family" font-variant="small-caps"/>
       </name>
-      <!--
       <substitute>
-        <choose>
-          <if type="webpage">
-            <text macro="title"/>
-          </if>
-          <else>
-            <text macro="editor"/>
-            <text macro="title"/>
-          </else>
-        </choose>
+        <text macro="editor"/>
+        <text macro="title"/>
       </substitute>
-      -->
     </names>
   </macro>
   <macro name="contributors-sort">
@@ -360,7 +351,9 @@
                 </choose>
               </if>
               <else>
+                <!--
                 <text value="s. p."/>
+                -->
               </else>
             </choose>
           </if>
