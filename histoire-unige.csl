@@ -64,7 +64,7 @@
     </terms>
   </locale>
   <macro name="contributors">
-    <names variable="author container-author director editor composer">
+    <names variable="author composer container-author director">
       <name>
         <name-part name="family" font-variant="small-caps"/>
       </name>
